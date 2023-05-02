@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
   list-style: none;
   outline: none;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 html, body {

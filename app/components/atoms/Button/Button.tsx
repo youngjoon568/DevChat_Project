@@ -1,15 +1,21 @@
 import React from "react";
 import { ButtonWrapper } from "./styles";
-import Icon, { icon } from "./Icon";
+import Icon from "../Icon/Icon";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    icon?: icon;
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+    bgSize?: "l" | "m" | "s";
+    bgColor?: string;
+    textSize?: "xxxl" | "xxl" | "xl" | "l" | "m" | "s";
+    textColor?: string;
+    noneBorder?: boolean;
+    iconSize?: "l" | "m" | "s";
+    icon?: "google" | "github";
 };
 
-const Button: React.FC<ButtonProps> = ({ children, icon, ...props }) => {
+const Button: React.FC<ButtonProps> = ({ bgSize, bgColor, textSize, textColor, noneBorder, icon, children }) => {    
     return (
-        <ButtonWrapper icon={icon} {...props}>
-            {icon && <Icon icon={icon} />}
+        <ButtonWrapper bgSize={bgSize} bgColor={bgColor} textSize={textSize} textColor={textColor} noneBorder={noneBorder} icon={icon}>
+            {icon && <Icon icon={icon} iconSize={"m"} />}
             <span>{children}</span>
         </ButtonWrapper>
     );

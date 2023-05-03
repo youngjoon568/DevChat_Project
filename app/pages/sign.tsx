@@ -1,6 +1,7 @@
 import SignLayout from '@/components/organisms/SignLayout';
-import React from 'react';
 
-export default function sign() {
-  return <SignLayout />
+const Sign: React.FC = () => {
+  return <SignLayout />;
 };
+
+export default Sign;

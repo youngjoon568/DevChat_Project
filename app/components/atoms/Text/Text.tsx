@@ -1,12 +1,13 @@
 import { TextWrapper } from "./styles";
 
-export interface TextProps extends React.HTMLAttributes<HTMLElement> {
-    size?: "xl" | "l" | "m" | "s";
+interface TextProps extends React.HTMLAttributes<HTMLElement> {
+    textSize?: "xxxl" | "xxl" | "xl" | "l" | "m" | "s";
+    textColor?: string;
 };
 
-const Text: React.FC<TextProps> = ({ size = "s", children }) => {
+const Text: React.FC<TextProps> = ({ textSize = "s", children }) => {
     return (
-    <TextWrapper size={size}>{ children }</TextWrapper>
+        <TextWrapper textSize={textSize}>{children}</TextWrapper>
     );
 };
 

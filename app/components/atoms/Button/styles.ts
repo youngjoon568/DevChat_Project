@@ -1,18 +1,22 @@
-import styled, { css } from "styled-components";
+import styled, { ThemeProps, css } from "styled-components";
+import { MyTheme } from "@/pages/_app";
+import { BgColorStyle, BgSizeStyle, BorderStyle, TextColorStyle, TextSizeStyle } from "@/styles/WrapperStyles";
 
-interface ButtonWrapperProps {
-    icon?: "google" | "kakao" | "github";
+interface ButtonWrapperProps extends ThemeProps<MyTheme> {
+    bgSize?: "l" | "m" | "s";
+    bgColor?: string;
+    textSize?: "xxxl" | "xxl" | "xl" | "l" | "m" | "s";
+    textColor?: string;
+    noneBorder?: boolean;
+    icon?: "google" | "github";
 };
 
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
-width: 100%;
-height: 50px;
 position: relative;
 border-radius: 5px;
-border: none;
 
-${({ icon }) =>
-        icon && css`
+${icon =>
+    icon && css`
         span {
             display: inline;
             position: absolute;
@@ -20,25 +24,12 @@ ${({ icon }) =>
             left: 120px;
             transform: translateY(-50%);
         }
-    `}
+    `
+}
 
-${({ icon }) => {
-        switch (icon) {
-            case "kakao":
-                return css`
-                background-color: #F7E600;
-            `;
-            case "github":
-                return css`
-                background-color: #121212;
-                color: #fff;
-                `;
-            default:
-                return css`
-                color: black;
-                border: 1px solid #121212;
-                background: none;
-            `;
-        }
-    }}
+${BgSizeStyle}
+${BgColorStyle}
+${TextSizeStyle}
+${TextColorStyle}
+${BorderStyle}
 `;

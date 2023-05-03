@@ -1,7 +1,10 @@
-import React from 'react'
-
-export default function signup() {
+const Signup: React.FC = () => {
   return (
-    <div>signup</div>
+    <>
+    안녕
+    </>
+
   );
 };
+
+export default Signup;

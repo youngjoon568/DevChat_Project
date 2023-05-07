@@ -3,19 +3,19 @@ import { ButtonWrapper } from "./styles";
 import Icon from "../Icon/Icon";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    bgSize?: "l" | "m" | "s";
+    bgSize?: "xl" | "l" | "m" | "s";
     bgColor?: string;
     textSize?: "xxxl" | "xxl" | "xl" | "l" | "m" | "s";
     textColor?: string;
-    noneBorder?: boolean;
+    border?: boolean;
+    icon?: "left" | "google" | "github";
     iconSize?: "l" | "m" | "s";
-    icon?: "google" | "github";
 };
 
-const Button: React.FC<ButtonProps> = ({ bgSize, bgColor, textSize, textColor, noneBorder, icon, children }) => {    
+const Button: React.FC<ButtonProps> = ({ icon, iconSize, children, ...props }) => {    
     return (
-        <ButtonWrapper bgSize={bgSize} bgColor={bgColor} textSize={textSize} textColor={textColor} noneBorder={noneBorder} icon={icon}>
-            {icon && <Icon icon={icon} iconSize={"m"} />}
+        <ButtonWrapper icon={icon} {...props}>
+            {icon && <Icon icon={icon} iconSize={iconSize} />}
             <span>{children}</span>
         </ButtonWrapper>
     );

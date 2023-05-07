@@ -6,6 +6,7 @@ export interface MyTheme extends DefaultTheme {
     color: {
         primary: string,
         secondary: string;
+        dark: string;
     };
     textSize: {
         xxxl: string;
@@ -17,10 +18,11 @@ export interface MyTheme extends DefaultTheme {
     };
 };
 
-const theme: MyTheme = {
+export const theme: MyTheme = {
     color: {
-        primary: '#121212',
-        secondary: '#0070f3',
+        primary: '#3F51B5',
+        dark: "#283593",
+        secondary: '#121212',
     },
     textSize: {
         xxxl: "2.8rem",

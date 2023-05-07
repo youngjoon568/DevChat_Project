@@ -1,22 +1,48 @@
-import styled from "styled-components";
-import { icon } from "../Icon";
+import styled, { css } from "styled-components";
 import Link from "next/link";
 import { BgColorStyle, BgSizeStyle, BorderStyle, TextColorStyle, TextSizeStyle } from "@/styles/WrapperStyles";
 
 interface LinkBtnWrapperProps {
-    bgSize?: "l" | "m" | "s";
+    bgSize?: "xl" | "l" | "m" | "s";
     bgColor?: string;
     textSize?: "xxxl" | "xxl" | "xl" | "l" | "m" | "s";
     textColor?: string;
-    noneBorder?: boolean;
-    type?: "read" | "back";
+    border?: boolean;
+    box?: boolean;
+    type?: boolean;
     href?: string;
-    icon?: icon;
+    icon?: "left" | "google" | "github";
+    iconSize?: "l" | "m" | "s";
 };
 
 export const LinkBtnWrapper = styled(Link)<LinkBtnWrapperProps>`
 display: block;
 cursor: pointer;
+
+
+${({ border }) => 
+    !border && css`
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `
+}
+
+${({ box  }) => 
+    box && css`
+        display: inline;
+    `
+}
+
+${({ box  }) =>
+    !box && css`
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    `
+}
 
 ${BgSizeStyle}
 ${BgColorStyle}

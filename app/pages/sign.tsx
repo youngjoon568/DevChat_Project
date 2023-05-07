@@ -1,4 +1,4 @@
-import SignLayout from '@/components/organisms/SignLayout';
+import SignLayout from "@/components/templates/SignLayout/SignLayout";
 
 const Sign: React.FC = () => {
   return <SignLayout />;

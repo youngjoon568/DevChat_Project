@@ -1,8 +1,8 @@
 import React from "react";
-import { GithubIconWrapper, GoogleIconWrapper } from "./styles";
+import { GithubIconWrapper, GoogleIconWrapper, LeftIconWrapper } from "./styles";
 
-export interface IconProps {
-  icon: "google" | "github";
+interface IconProps {
+  icon?: "left" | "google" | "github";
   iconSize?: "l" | "m" | "s";
 }
 
@@ -11,7 +11,8 @@ const Icon: React.FC<IconProps> = ({ icon, iconSize }) => {
     <>
       {
         icon === "google" ? <GoogleIconWrapper iconSize={iconSize} /> : 
-        icon === "github" ? <GithubIconWrapper iconSize={iconSize} /> : null
+        icon === "github" ? <GithubIconWrapper iconSize={iconSize} /> :
+        icon === "left" ? <LeftIconWrapper iconSize={iconSize} /> : null
       }
     </>
   );

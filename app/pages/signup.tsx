@@ -1,10 +1,7 @@
-const Signup: React.FC = () => {
-  return (
-    <>
-    안녕
-    </>
+import SignupLayout from "@/components/templates/SignupLayout/SignupLayout";
 
-  );
+const Signup: React.FC = () => {
+  return <SignupLayout />;
 };
 
 export default Signup;

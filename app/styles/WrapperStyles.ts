@@ -1,6 +1,11 @@
 import { css } from "styled-components";
 
-export const BgSizeStyle = ({ bgSize }: { bgSize?: "l" | "m" | "s" }) => css`
+export const BgSizeStyle = ({ bgSize }: { bgSize?: "xl" | "l" | "m" | "s" }) => css`
+  ${bgSize === "xl" &&
+  css`
+    width: 100%;
+    height: 48px;
+  `}
   ${bgSize === "l" &&
   css`
     width: 100%;
@@ -8,11 +13,11 @@ export const BgSizeStyle = ({ bgSize }: { bgSize?: "l" | "m" | "s" }) => css`
   `}
   ${bgSize === "m" &&
   css`
-
+    padding: 10px;
   `}
   ${bgSize === "s" &&
   css`
-    padding: 10px;
+    padding: 5px;
   `}
   ${!bgSize &&
   css`
@@ -39,7 +44,7 @@ export const TextSizeStyle = ({ textSize }: { textSize?: "xxxl" | "xxl" | "xl" |
   ${textSize === "l" &&
   css`
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: 600;
   `}
   ${textSize === "m" &&
   css`
@@ -65,25 +70,21 @@ export const TextColorStyle = ({ textColor }: { textColor?: string }) => css`
 color: ${textColor || "#121212"};
 `;
 
-export const BorderStyle = ({ noneBorder }: { noneBorder?: boolean }) => css`
-border: ${noneBorder ? "none" : "1px solid #121212"};
+export const BorderStyle = ({ border, borderColor }: { border?: boolean, borderColor?: string }) => css`
+border: ${border ? "none" : `1px solid ${borderColor ? borderColor : "#121212"}`};
 `;
 
 export const IconSizeStyle = ({ iconSize }: { iconSize?: string }) => css`
-  ${iconSize === "l" &&
-  css`
-    font-size: 2.4rem;
-  `}
-  ${iconSize === "m" &&
-  css`
-    font-size: 2rem;
-  `}
-  ${iconSize === "s" &&
-  css`
-    font-size: 1.6rem;
-  `}
-  ${!iconSize &&
-  css`
-    font-size: 1.8rem; 
-  `}
+  font-size: ${_ => {
+    switch (iconSize) {
+      case "l":
+        return "2.4rem";
+      case "m":
+        return "1.8rem";
+      case "s":
+        return "1.6rem";
+      default:
+        return "2rem";
+    }
+  }};
 `;

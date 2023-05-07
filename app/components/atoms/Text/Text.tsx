@@ -5,9 +5,9 @@ interface TextProps extends React.HTMLAttributes<HTMLElement> {
     textColor?: string;
 };
 
-const Text: React.FC<TextProps> = ({ textSize = "s", children }) => {
+const Text: React.FC<TextProps> = ({ children, ...props }) => {
     return (
-        <TextWrapper textSize={textSize}>{children}</TextWrapper>
+        <TextWrapper {...props}>{children}</TextWrapper>
     );
 };
 

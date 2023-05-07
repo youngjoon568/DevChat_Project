@@ -1,33 +1,34 @@
 import { LinkBtnWrapper } from "./styles";
-import Icon, { icon } from "../Icon/Icon";
+import Icon from "../Icon/Icon";
 import { useRouter } from "next/router";
 
 interface LinkBtnProps extends React.HTMLAttributes<HTMLElement> {
-    bgSize?: "l" | "m" | "s";
+    bgSize?: "xl" | "l" | "m" | "s";
     bgColor?: string;
     textSize?: "xxxl" | "xxl" | "xl" | "l" | "m" | "s";
     textColor?: string;
-    noneBorder?: boolean;
-    type?: "read" | "back";
+    border?: boolean;
+    box?: boolean;
+    type?: boolean;
     href?: string;
-    icon?: icon;
+    icon?: "left" | "google" | "github";
+    iconSize?: "l" | "m" | "s";
 };
 
-const LinkBtn: React.FC<LinkBtnProps> = ({ bgSize, bgColor, textSize, textColor, noneBorder, type="read", href, icon, children }) => {
+const LinkBtn: React.FC<LinkBtnProps> = ({ type, href, icon, iconSize, children, ...props }) => {
     const router = useRouter();
 
     const handleClick = (e : React.MouseEvent) => {
-        if (!(type === "read" && href)) {
+        if (type && !href) {
             e.preventDefault();
-
             router.back();
         };
     };
 
     return (
-        <LinkBtnWrapper bgSize={bgSize} bgColor={bgColor} textSize={textSize} textColor={textColor} noneBorder={noneBorder} type={type} href={href || ""} icon={icon} onClick={handleClick}>
-            {icon && <Icon icon={icon} />}
-            {children}
+        <LinkBtnWrapper href={href || ""} onClick={handleClick} {...props}>
+            {icon && <Icon icon={icon} iconSize={iconSize} />}
+            <span>{children}</span>
         </LinkBtnWrapper>
     );
 };

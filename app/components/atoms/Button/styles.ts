@@ -1,21 +1,20 @@
-import styled, { ThemeProps, css } from "styled-components";
-import { MyTheme } from "@/pages/_app";
+import styled, { css } from "styled-components";
 import { BgColorStyle, BgSizeStyle, BorderStyle, TextColorStyle, TextSizeStyle } from "@/styles/WrapperStyles";
 
-interface ButtonWrapperProps extends ThemeProps<MyTheme> {
-    bgSize?: "l" | "m" | "s";
+interface ButtonWrapperProps {
+    bgSize?: "xl" | "l" | "m" | "s";
     bgColor?: string;
     textSize?: "xxxl" | "xxl" | "xl" | "l" | "m" | "s";
     textColor?: string;
-    noneBorder?: boolean;
-    icon?: "google" | "github";
+    border?: boolean;
+    icon?: "left" | "google" | "github";
 };
 
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`
 position: relative;
 border-radius: 5px;
 
-${icon =>
+${({ icon }) =>
     icon && css`
         span {
             display: inline;

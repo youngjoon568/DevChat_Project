@@ -1,6 +1,7 @@
 import { LinkBtnWrapper } from "./styles";
 import Icon from "../Icon/Icon";
 import { useRouter } from "next/router";
+import { iconType } from "../Icon";
 
 interface LinkBtnProps extends React.HTMLAttributes<HTMLElement> {
     bgSize?: "xl" | "l" | "m" | "s";
@@ -11,7 +12,7 @@ interface LinkBtnProps extends React.HTMLAttributes<HTMLElement> {
     box?: boolean;
     type?: boolean;
     href?: string;
-    icon?: "left" | "google" | "github";
+    icon?: iconType;
     iconSize?: "l" | "m" | "s";
 };
 

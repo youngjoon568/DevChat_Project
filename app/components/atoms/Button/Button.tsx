@@ -1,6 +1,7 @@
 import React from "react";
 import { ButtonWrapper } from "./styles";
 import Icon from "../Icon/Icon";
+import { iconType } from "../Icon";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     bgSize?: "xl" | "l" | "m" | "s";
@@ -8,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     textSize?: "xxxl" | "xxl" | "xl" | "l" | "m" | "s";
     textColor?: string;
     border?: boolean;
-    icon?: "left" | "google" | "github";
+    icon?: iconType;
     iconSize?: "l" | "m" | "s";
 };
 

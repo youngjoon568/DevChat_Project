@@ -8,25 +8,18 @@ interface InputWrapperProps {
     textColor?: string;
     border?: boolean;
     borderColor?: string;
-    padSize?: "l" | "m" | "s";
     inputText?: string;
     icon?: "";
+    inputId?: string;
 };
-
-export const InputItemWrapper = styled.div<InputWrapperProps>`
-border-radius: 5px;
-${BorderStyle}
-${BgSizeStyle}
-${BgColorStyle}
-
-padding: ${props => props.padSize === "l" ? "10px" : 
-                    props.padSize === "m" ? "8px" : 
-                    props.padSize === "s" ? "5px" : ""};
-`;
 
 export const InputWrapper = styled.input<InputWrapperProps>`
 width: 100%;
 height: 100%;
+border: none;
+${BorderStyle}
+${BgSizeStyle}
+${BgColorStyle}
 
 ::placeholder {
     ${TextSizeStyle}

@@ -43,7 +43,7 @@ button:last-child {
 
 button svg {
     position: absolute;
-    left: 40px;
+    left: 30px;
     top: 50%;
     transform: translate(-50%, -50%);
 }

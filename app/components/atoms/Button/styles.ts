@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { BgColorStyle, BgSizeStyle, BorderStyle, TextColorStyle, TextSizeStyle } from "@/styles/WrapperStyles";
+import { iconType } from "../Icon";
 
 interface ButtonWrapperProps {
     bgSize?: "xl" | "l" | "m" | "s";
@@ -7,7 +8,7 @@ interface ButtonWrapperProps {
     textSize?: "xxxl" | "xxl" | "xl" | "l" | "m" | "s";
     textColor?: string;
     border?: boolean;
-    icon?: "left" | "google" | "github";
+    icon?: iconType;
 };
 
 export const ButtonWrapper = styled.button<ButtonWrapperProps>`

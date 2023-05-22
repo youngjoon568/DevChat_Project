@@ -7,7 +7,10 @@ position: relative;
 padding: 0 25px;
 display: flex;
 align-items: center;
-
+position: fixed;
+top: 0;
+background: #fff;
+z-index: 99;
 p {
     position: absolute;
     top: 50%;

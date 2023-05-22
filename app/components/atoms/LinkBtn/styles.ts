@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import Link from "next/link";
 import { BgColorStyle, BgSizeStyle, BorderStyle, TextColorStyle, TextSizeStyle } from "@/styles/WrapperStyles";
+import { iconType } from "../Icon";
 
 interface LinkBtnWrapperProps {
     bgSize?: "xl" | "l" | "m" | "s";
@@ -11,7 +12,7 @@ interface LinkBtnWrapperProps {
     box?: boolean;
     type?: boolean;
     href?: string;
-    icon?: "left" | "google" | "github";
+    icon?: iconType;
     iconSize?: "l" | "m" | "s";
 };
 

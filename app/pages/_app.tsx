@@ -1,6 +1,10 @@
+"use client";
+import { AuthProvider } from '@/context/AuthContext';
+import { UserProvider } from '@/context/UserContext';
 import { GlobalStyle } from '@/styles/GlobalStyle';
 import { AppProps } from 'next/app';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
+import { SessionProvider } from 'next-auth/react';
 
 export interface MyTheme extends DefaultTheme {
     color: {
@@ -36,12 +40,16 @@ export const theme: MyTheme = {
 
 const App = ({ Component, pageProps }: AppProps) => {
     return (
-        <>
-            <GlobalStyle />
-            <ThemeProvider theme={theme}>
-                <Component {...pageProps} />
-            </ThemeProvider>
-        </>
+        <SessionProvider session={pageProps.session}>
+            <UserProvider>
+                <AuthProvider>
+                    <ThemeProvider theme={theme}>
+                        <Component {...pageProps} />
+                    </ThemeProvider>
+                    <GlobalStyle />
+                </AuthProvider>
+            </UserProvider>
+        </SessionProvider>
     );
 };
 

@@ -1,39 +1,42 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session, User } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
+import { db } from "@/lib/db";
 
 export const authOptions = {
     providers: [
-        CredentialsProvider({
-            name: "Credentials",
-            credentials: {
-                email: { label: "이메일 *", type: "email", placeholder: "이메일을 입력해 주세요." },
-                password: { label: "비밀번호 *", type: "password", placeholder: "비밀번호를 입력해 주세요." }
-            },
-            async authorize(credentials, req) {
-                const { email, password } = credentials as { email: string; password: string };
-                
-
-                return { id: "1", email: "chaeyj568@gmail.com", username: "채영준", created_at: "2023-05-28 12:05:05" };
-            },
-        }),
         GithubProvider({
-            clientId: "",
-            clientSecret: ""
+            clientId: "12e4185da0415b78032f",
+            clientSecret: "18d65d17c934236f7c4737b91a295ef97e48d5e0",
         }),
         GoogleProvider({
-            clientId: "",
-            clientSecret: ""
-        })
+            clientId: "3649145811-gfp6v8k3qclvluvnv53vhg5e7v7bll0s.apps.googleusercontent.com",
+            clientSecret: "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",
+        }),
     ],
+    database: {
+        type: "mysql",
+        client: db,
+    },
     pages: {
         signIn: "/api/signin",
-        signOut: "/auth/signout",
-        error: "/auth/error",
     },
     callbacks: {
+        async session({ session, user }: { session: Session; user: User }): Promise<Session> {
+            const { email, name } = user;
+            session.user = user;
 
+            const existingUser: any = await db.query("SELECT * FROM users WHERE email = ?", [email]);
+
+            console.log(existingUser);
+            
+            if (!existingUser.length) {
+                await db.query("INSERT INTO users (username, email) VALUES (?, ?)", [name, email]);
+            };
+
+            session.user = user;
+            return session;
+        },
     },
 };
 

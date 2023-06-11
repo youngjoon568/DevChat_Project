@@ -3,10 +3,9 @@ import { ReactNode, createContext, useReducer } from "react";
 export interface User {
     email: string;
     password: string;
-    name: string;
-    checkPassword: string;
-    userId: string;
-    isSave: boolean;
+    name?: string;
+    checkPassword?: string;
+    userId?: string;
 };
 
 type Action =
@@ -14,8 +13,7 @@ type Action =
     | { type: "PASSWORD"; payload: string }
     | { type: "NAME"; payload: string }
     | { type: "CHECK_PASSWORD"; payload: string }
-    | { type: "USERID"; payload: string }
-    | { type: "ISSAVE"; payload: boolean };
+    | { type: "USERID"; payload: string };
 
 const userReducer = (state: User, action: Action): User => {
     switch (action.type) {
@@ -27,8 +25,6 @@ const userReducer = (state: User, action: Action): User => {
             return { ...state, checkPassword: action.payload };
         case "NAME":
             return { ...state, name: action.payload };
-        case "ISSAVE":
-            return { ...state, isSave: action.payload };
         default:
             return state;
     };
@@ -39,7 +35,7 @@ export interface UserContextType {
     dispatch: React.Dispatch<Action>;
 };
 
-export const UserContext = createContext<UserContextType>({ user: { email: "", password: "", name: "", checkPassword: "", userId: "", isSave: false }, dispatch: () => { } });
+export const UserContext = createContext<UserContextType>({ user: { email: "", password: "", name: "", checkPassword: "", userId: "", }, dispatch: () => { } });
 
 interface UserProviderProps {
     children: ReactNode;
@@ -52,7 +48,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         checkPassword: "",
         name: "",
         userId: "",
-        isSave: false,
     });
 
     return (

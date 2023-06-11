@@ -3,6 +3,7 @@ import Text from "../../atoms/Text/Text";
 import LinkBtn from "../../atoms/LinkBtn/LinkBtn";
 import { theme } from "@/pages/_app";
 import { BtnBox, BtnContainer, LinkBtnBox, SignLayoutWrapper, TextBox, TextInner } from "./styles";
+import { signIn } from "next-auth/react";
 
 const SignLayout: React.FC = () => {
     return (
@@ -15,8 +16,8 @@ const SignLayout: React.FC = () => {
             </TextBox>
             <BtnContainer>
                 <BtnBox>
-                    <Button bgSize={"l"} textSize={"m"} icon={"google"}>구글로 시작하기</Button>
-                    <Button bgSize={"l"} textSize={"m"} border={true} icon={"github"} bgColor={"#121212"} textColor={"#fff"}>깃허브로 시작하기</Button>
+                    <Button bgSize={"l"} textSize={"m"} icon={"google"} onClick={_ => signIn("google")}>구글로 시작하기</Button>
+                    <Button bgSize={"l"} textSize={"m"} border={true} icon={"github"} bgColor={"#121212"} textColor={"#fff"} onClick={_ => signIn("github")}>깃허브로 시작하기</Button>
                     <LinkBtn bgSize={"xl"} textSize={"m"} border={true} href={"/signup"} bgColor={theme.color.primary} textColor={"#fff"}>계정 만들기</LinkBtn>
                 </BtnBox>
                 <LinkBtnBox>

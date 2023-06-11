@@ -7,7 +7,7 @@ export type QueryParams<T> = {
     values?: T[];
 };
 
-const db = mysql({
+export const db = mysql({
     config: {
         host: "localhost",
         port: 3306,

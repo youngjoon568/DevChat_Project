@@ -12,3 +12,5 @@ DELETE FROM users;
 
 /*테이블지우기*/
 DROP TABLE users;
+
+SELECT * FROM users WHERE email = 'chaeyj568@gmail.com';

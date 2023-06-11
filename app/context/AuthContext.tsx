@@ -1,50 +1,49 @@
-import { Session } from "next-auth";
-import { ReactNode, createContext, useReducer } from "react";
+import { ReactNode, createContext, useReducer, useEffect } from "react";
 
 export interface Auth {
-    isLogin: boolean;
+  isLogin: boolean;
 }
 
 type Action =
-    | { type: "LOGIN"; payload: Session }
-    | { type: "LOGOUT" }
-    | { type: "ISLOGIN"; payload: boolean };
+  | { type: "LOGIN"; }
+  | { type: "LOGOUT" }
+  | { type: "ISLOGIN"; payload: boolean };
 
 const authReducer = (state: Auth, action: Action): Auth => {
-    switch (action.type) {
-        case "LOGIN":
-            return { ...state, isLogin: true, };
-        case "LOGOUT":
-            return { ...state, isLogin: false, };
-        case "ISLOGIN":
-            return { ...state, isLogin: action.payload };
-        default:
-            return state;
-    };
+  switch (action.type) {
+    case "LOGIN":
+      return { ...state, isLogin: true, };
+    case "LOGOUT":
+      return { ...state, isLogin: false, };
+    case "ISLOGIN":
+      return { ...state, isLogin: action.payload };
+    default:
+      return state;
+  };
 };
 
 export interface AuthContextType {
-    auth: Auth;
-    dispatch: React.Dispatch<Action>;
+  auth: Auth;
+  dispatch: React.Dispatch<Action>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
-    auth: { isLogin: false, },
-    dispatch: () => { },
+  auth: { isLogin: false, },
+  dispatch: () => {},
 });
 
 interface AuthProviderProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-    const [auth, dispatch] = useReducer(authReducer, {
-        isLogin: false,
-    });
+  const [auth, dispatch] = useReducer(authReducer, {
+    isLogin: false,
+  });
 
-    return (
-        <AuthContext.Provider value={{ auth, dispatch }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={{ auth, dispatch }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };

@@ -4,7 +4,7 @@ import { UserProvider } from '@/context/UserContext';
 import { GlobalStyle } from '@/styles/GlobalStyle';
 import { AppProps } from 'next/app';
 import { DefaultTheme, ThemeProvider } from 'styled-components';
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider } from "next-auth/react";
 
 export interface MyTheme extends DefaultTheme {
     color: {
@@ -38,9 +38,9 @@ export const theme: MyTheme = {
     },
 };
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
     return (
-        <SessionProvider session={pageProps.session}>
+        <SessionProvider session={session}>
             <UserProvider>
                 <AuthProvider>
                     <ThemeProvider theme={theme}>
